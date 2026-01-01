@@ -26,7 +26,10 @@
         <div class="card">
             <!-- Profile Header -->
             <section class="profile">
-                <img src="https://media.discordapp.net/attachments/901178528798756864/1456183073564524554/ebd907b9d268ab18b7fa6b4afc0574c9.png?ex=69576fab&is=69561e2b&hm=a6299ac3edac2b43a04f384469d55a0f8db77c775e176f86ce6cc184ede0d5f0&=&format=webp&quality=lossless" alt="Avatar" class="avatar">
+                <!-- 3D Avatar Wrapper -->
+                <div class="avatar-wrapper">
+                    <img src="https://media.discordapp.net/attachments/901178528798756864/1456183073564524554/ebd907b9d268ab18b7fa6b4afc0574c9.png?ex=69576fab&is=69561e2b&hm=a6299ac3edac2b43a04f384469d55a0f8db77c775e176f86ce6cc184ede0d5f0&=&format=webp&quality=lossless" alt="Avatar" class="avatar">
+                </div>
                 <div class="info">
                     <p class="username">._vir</p>
                     <h1 class="name typewriter">Vir</h1>
@@ -193,7 +196,6 @@
         canvas.height = window.innerHeight;
 
         let particles = [];
-        const particleCount = 30;
         const particleColor = '#E246A1';
 
         let mouseX = 0;
@@ -258,6 +260,31 @@
         }
 
         animate();
+    </script>
+
+    <!-- 3D Avatar Tilt Script -->
+    <script>
+        const avatarWrapper = document.querySelector('.avatar-wrapper');
+        const avatar = document.querySelector('.avatar');
+
+        if (avatarWrapper && avatar) {
+            avatarWrapper.addEventListener('mousemove', (e) => {
+                const rect = avatarWrapper.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateY = ((x - centerX) / centerX) * 20;
+                const rotateX = ((centerY - y) / centerY) * 20;
+
+                avatar.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(1.08)`;
+            });
+
+            avatarWrapper.addEventListener('mouseleave', () => {
+                avatar.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+            });
+        }
     </script>
 </body>
 </html>
