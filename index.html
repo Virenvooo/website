@@ -7,21 +7,31 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Particles.js -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <!-- Icons -->
-    <script src="https://cdn.jsdelivr.net/npm/simple-icons@v12/icons/twitter.svg"></script>
 </head>
 <body>
     <!-- Particles Background -->
     <div id="particles-js"></div>
 
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" aria-label="Toggle dark/light mode">
+        <svg id="theme-icon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
+
+    <!-- Custom Cursor Trail Canvas -->
+    <canvas id="cursor-trail"></canvas>
+
     <main class="container">
         <div class="card">
             <!-- Profile Header -->
             <section class="profile">
-                <img src="https://media.discordapp.net/attachments/901178528798756864/1456183073564524554/ebd907b9d268ab18b7fa6b4afc0574c9.png?ex=69576fab&is=69561e2b&hm=a6299ac3edac2b43a04f384469d55a0f8db77c775e176f86ce6cc184ede0d5f0&=&format=webp&quality=lossless" alt="Avatar" class="avatar">
+<div class="avatar-wrapper">
+    <img src="https://media.discordapp.net/attachments/901178528798756864/1456183073564524554/ebd907b9d268ab18b7fa6b4afc0574c9.png?ex=69576fab&is=69561e2b&hm=a6299ac3edac2b43a04f384469d55a0f8db77c775e176f86ce6cc184ede0d5f0&=&format=webp&quality=lossless" alt="Avatar" class="avatar">
+</div>
                 <div class="info">
                     <p class="username">._vir</p>
-                    <h1 class="name">Vir</h1>
+                    <h1 class="name typewriter">Vir</h1>
                     <div class="badges">
                         <span class="badge">14-Years-Old</span>
                         <span class="badge">🎂 Oct 13</span>
@@ -54,11 +64,26 @@
             <section class="section">
                 <h2 class="section-title">CONNECT</h2>
                 <div class="social-grid">
-                    <a href="https://discord.com/users/823914932185202728" class="social-btn"><svg><use href="https://cdn.discordapp.com/attachments/901178528798756864/1456200641033670826/discord.png?ex=69578007&is=69562e87&hm=92a877b4ec9fed0cd3b30fa16e295b4ea06349970b234b6e8eb6edf9fa4e87fb&"></use></svg><span>Discord</span></a>
-                    <a href="https://github.com/Virenvooo/" class="social-btn"><svg><use href="https://cdn.simpleicons.org/github"></use></svg><span>GitHub</span></a>
-                    <a href="https://open.spotify.com/user/mrfpf7omss9rmtuuebmymartk" class="social-btn"><svg><use href="https://cdn.simpleicons.org/spotify"></use></svg><span>Spotify</span></a>
-                    <a href="https://www.last.fm/it/user/Virenvo" class="social-btn"><svg><use href="https://cdn.simpleicons.org/lastdotfm"></use></svg><span>Last.fm</span></a>
-                    <a href="https://anilist.co/user/Vir/" class="social-btn"><svg><use href="https://cdn.simpleicons.org/anilist"></use></svg><span>AniList</span></a>
+                    <a href="https://discord.com/users/823914932185202728" class="social-btn">
+                        <img src="https://cdn.simpleicons.org/discord" alt="Discord" class="social-icon">
+                        <span>Discord</span>
+                    </a>
+                    <a href="https://github.com/Virenvooo/" class="social-btn">
+                        <img src="https://cdn.simpleicons.org/github" alt="GitHub" class="social-icon">
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://open.spotify.com/user/mrfpf7omss9rmtuuebmymartk" class="social-btn">
+                        <img src="https://cdn.simpleicons.org/spotify" alt="Spotify" class="social-icon">
+                        <span>Spotify</span>
+                    </a>
+                    <a href="https://www.last.fm/it/user/Virenvo" class="social-btn">
+                        <img src="https://cdn.simpleicons.org/lastdotfm" alt="Last.fm" class="social-icon">
+                        <span>Last.fm</span>
+                    </a>
+                    <a href="https://anilist.co/user/Vir/" class="social-btn">
+                        <img src="https://cdn.simpleicons.org/anilist" alt="AniList" class="social-icon">
+                        <span>AniList</span>
+                    </a>
                 </div>
                 <hr class="divider">
             </section>
@@ -72,7 +97,20 @@
                 <hr class="divider">
             </section>
 
-            <!-- Last.fm Recently Played -->
+            <!-- Spotify Currently Playing -->
+            <section class="section">
+                <h2 class="section-title">CURRENTLY PLAYING ON SPOTIFY</h2>
+                <div class="lastfm-widget" style="max-width: 450px; padding: 0; background: transparent; border: none; box-shadow: none;">
+                    <a href="https://open.spotify.com/user/mrfpf7omss9rmtuuebmymartk" target="_blank" style="display: block; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);">
+                        <img src="https://spotify-github-profile.kittinanx.com/api/view?uid=mrfpf7omss9rmtuuebmymartk&cover_image=true&theme=spotify-embed&show_offline=true&background_color=121212&interchange=false&profanity=false&mode=dark&bar_color=53b14f&bar_color_cover=false" 
+                             alt="Spotify Currently Playing" 
+                             style="width: 100%; height: auto; display: block; border-radius: 16px;">
+                    </a>
+                </div>
+                <hr class="divider">
+            </section>
+
+            <!-- Recently Played on Last.fm -->
             <section class="section">
                 <h2 class="section-title">RECENTLY PLAYED ON LAST.FM</h2>
                 <div class="lastfm-widget">
@@ -85,7 +123,7 @@
         </div>
     </main>
 
-    <!-- Particles.js -->
+    <!-- Particles.js Config -->
     <script>
         particlesJS("particles-js", {
             "particles": {
@@ -121,5 +159,153 @@
             "retina_detect": true
         });
     </script>
+
+    <!-- Dark/Light Mode Toggle Script -->
+    <script>
+        const toggle = document.querySelector('.theme-toggle');
+        const icon = document.getElementById('theme-icon');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.add('light-mode');
+            icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+        } else {
+            icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+        }
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+
+            if (body.classList.contains('light-mode')) {
+                localStorage.setItem('theme', 'light');
+                icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+            } else {
+                localStorage.setItem('theme', 'dark');
+                icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+            }
+        });
+    </script>
+
+    <!-- Glowing Cursor Trail -->
+    <script>
+        const canvas = document.getElementById('cursor-trail');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        const particleCount = 30;
+        const particleColor = '#E246A1';
+
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = mouseX;
+                this.y = mouseY;
+                this.size = Math.random() * 4 + 1;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 - 1.5;
+                this.life = 30;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life--;
+                this.size *= 0.95;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = particleColor;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = particleColor;
+                ctx.globalAlpha = this.life / 30;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (Math.random() < 0.7) {
+                particles.push(new Particle());
+            }
+
+            particles.forEach((particle, index) => {
+                particle.update();
+                particle.draw();
+
+                if (particle.life <= 0 || particle.size <= 0.2) {
+                    particles.splice(index, 1);
+                }
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 </body>
+
+<script>
+// 3D Avatar
+const avatarWrapper = document.querySelector('.avatar-wrapper');
+const avatar = document.querySelector('.avatar');
+
+if (avatarWrapper && avatar) {
+    avatarWrapper.addEventListener('mousemove', (e) => {
+        const rect = avatarWrapper.getBoundingClientRect();
+        const x = e.clientX - rect.left; // x position within the element
+        const y = e.clientY - rect.top;  // y position within the element
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateY = ((x - centerX) / centerX) * 20; // max 20deg tilt
+        const rotateX = ((centerY - y) / centerY) * 20; // invert Y for natural feel
+
+        avatar.style.transform = `
+            rotateY(${rotateY}deg)
+            rotateX(${rotateX}deg)
+            scale(1.08)
+        `;
+    });
+
+    // Reset
+    avatarWrapper.addEventListener('mouseleave', () => {
+        avatar.style.transform = 'rotateY(0) rotateX(0) scale(1)';
+    });
+
+    // Touch
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', (e) => {
+            if (e.gamma && e.beta) {
+                const rotateY = e.gamma * 0.8; // left/right tilt
+                const rotateX = e.beta * 0.5;  // forward/back tilt
+                avatar.style.transform = `
+                    rotateY(${rotateY}deg)
+                    rotateX(${rotateX}deg)
+                    scale(1.05)
+                `;
+            }
+        });
+    }
+}
+</script>
 </html>
