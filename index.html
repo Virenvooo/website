@@ -4,16 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vir's Website</title>
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/effects.css">
-    <link rel="stylesheet" href="css/theme.css">
-
+    <link rel="stylesheet" href="styles.css">
+    <!-- Particles.js -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
@@ -34,9 +26,7 @@
         <div class="card">
             <!-- Profile Header -->
             <section class="profile">
-<div class="avatar-wrapper">
-    <img src="https://media.discordapp.net/attachments/901178528798756864/1456183073564524554/ebd907b9d268ab18b7fa6b4afc0574c9.png?ex=69576fab&is=69561e2b&hm=a6299ac3edac2b43a04f384469d55a0f8db77c775e176f86ce6cc184ede0d5f0&=&format=webp&quality=lossless" alt="Avatar" class="avatar">
-</div>
+                <img src="https://media.discordapp.net/attachments/901178528798756864/1456183073564524554/ebd907b9d268ab18b7fa6b4afc0574c9.png?ex=69576fab&is=69561e2b&hm=a6299ac3edac2b43a04f384469d55a0f8db77c775e176f86ce6cc184ede0d5f0&=&format=webp&quality=lossless" alt="Avatar" class="avatar">
                 <div class="info">
                     <p class="username">._vir</p>
                     <h1 class="name typewriter">Vir</h1>
@@ -194,7 +184,7 @@
         });
     </script>
 
-    <!-- Glowing Cursor Trail -->
+    <!-- Custom Glowing Cursor Trail -->
     <script>
         const canvas = document.getElementById('cursor-trail');
         const ctx = canvas.getContext('2d');
@@ -270,50 +260,4 @@
         animate();
     </script>
 </body>
-
-<script>
-// 3D Avatar
-const avatarWrapper = document.querySelector('.avatar-wrapper');
-const avatar = document.querySelector('.avatar');
-
-if (avatarWrapper && avatar) {
-    avatarWrapper.addEventListener('mousemove', (e) => {
-        const rect = avatarWrapper.getBoundingClientRect();
-        const x = e.clientX - rect.left; // x position within the element
-        const y = e.clientY - rect.top;  // y position within the element
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateY = ((x - centerX) / centerX) * 20; // max 20deg tilt
-        const rotateX = ((centerY - y) / centerY) * 20; // invert Y for natural feel
-
-        avatar.style.transform = `
-            rotateY(${rotateY}deg)
-            rotateX(${rotateX}deg)
-            scale(1.08)
-        `;
-    });
-
-    // Reset
-    avatarWrapper.addEventListener('mouseleave', () => {
-        avatar.style.transform = 'rotateY(0) rotateX(0) scale(1)';
-    });
-
-    // Touch
-    if (window.DeviceOrientationEvent) {
-        window.addEventListener('deviceorientation', (e) => {
-            if (e.gamma && e.beta) {
-                const rotateY = e.gamma * 0.8; // left/right tilt
-                const rotateX = e.beta * 0.5;  // forward/back tilt
-                avatar.style.transform = `
-                    rotateY(${rotateY}deg)
-                    rotateX(${rotateX}deg)
-                    scale(1.05)
-                `;
-            }
-        });
-    }
-}
-</script>
 </html>

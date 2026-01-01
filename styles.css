@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* ===== BASE STYLES ===== */
 * {
     margin: 0;
     padding: 0;
@@ -29,13 +28,6 @@ body {
     pointer-events: none;
 }
 
-@media (pointer: coarse) {
-    body {
-        cursor: default;
-    }
-}
-
-/* ===== LAYOUT STYLES ===== */
 .container {
     display: flex;
     align-items: center;
@@ -57,6 +49,7 @@ body {
     box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.6),
         0 0 20px rgba(226, 70, 161, 0.2);
+    animation: float 8s ease-in-out infinite, fadeInUp 1.2s ease-out forwards;
     transition: background 0.6s ease, border 0.6s ease, box-shadow 0.6s ease;
 }
 
@@ -70,52 +63,9 @@ body {
     text-align: center;
 }
 
-.divider {
-    border: none;
-    border-top: 1px solid rgba(226, 70, 161, 0.5);
-    width: 60%;
-    max-width: 500px;
-    margin: 2.5rem auto 2rem auto;
-    display: block;
-    transition: border-top-color 0.6s ease;
-}
-
-.section {
-    margin-bottom: 3rem;
-    text-align: center;
-}
-
-.social-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-@media (max-width: 600px) {
-    .profile {
-        flex-direction: column;
-    }
-    .name {
-        font-size: 2.5rem;
-    }
-    .card {
-        padding: 2.5rem 1.5rem;
-    }
-}
-
-/* ===== COMPONENTS ===== */
-.avatar-wrapper {
-    perspective: 1000px;
+.avatar {
     width: 150px;
     height: 150px;
-    margin: 0 auto;
-}
-
-.avatar {
-    width: 100%;
-    height: 100%;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid #E246A1;
@@ -124,14 +74,27 @@ body {
     box-shadow: 
         0 0 20px rgba(226, 70, 161, 0.5),
         0 0 40px rgba(226, 70, 161, 0.3);
-    transition: transform 0.1s ease-out, box-shadow 0.4s ease;
-    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+
+.avatar:hover {
+    box-shadow: 
+        0 0 40px rgba(226, 70, 161, 1),
+        0 0 80px rgba(226, 70, 161, 0.8),
+        0 0 120px rgba(226, 70, 161, 0.6);
+    transform: scale(1.1);
 }
 
 .username {
     color: #E246A1;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.6s;
+    opacity: 0;
     transition: color 0.6s ease;
 }
 
@@ -142,12 +105,36 @@ body {
     transition: color 0.6s ease;
 }
 
+.typewriter {
+    overflow: hidden;
+    border-right: 0.15em solid #E246A1;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation: 
+        typing 2s steps(3, end) forwards,
+        blink-caret 0.75s step-end infinite;
+    display: inline-block;
+    width: 0;
+    animation-delay: 0.8s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.typewriter::after {
+    content: '';
+    animation: remove-cursor 0.1s forwards 2.5s;
+}
+
 .badges {
     display: flex;
     flex-wrap: wrap;
     gap: 0.8rem;
     justify-content: center;
     margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 1.0s;
+    opacity: 0;
 }
 
 .badge {
@@ -166,8 +153,36 @@ body {
     margin: 0 auto;
     text-align: justify;
     hyphens: auto;
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 1.2s;
+    opacity: 0;
     transition: color 0.6s ease;
 }
+
+.divider {
+    border: none;
+    border-top: 1px solid rgba(226, 70, 161, 0.5);
+    width: 60%;
+    max-width: 500px;
+    margin: 2.5rem auto 2rem auto;
+    display: block;
+    transition: border-top-color 0.6s ease;
+}
+
+.section {
+    margin-bottom: 3rem;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.section:nth-child(1) { animation-delay: 0.3s; }
+.section:nth-child(2) { animation-delay: 0.5s; }
+.section:nth-child(3) { animation-delay: 0.7s; }
+.section:nth-child(4) { animation-delay: 0.9s; }
+.section:nth-child(5) { animation-delay: 1.1s; }
+.section:nth-child(6) { animation-delay: 1.3s; }
+.section:nth-child(7) { animation-delay: 1.5s; }
 
 .section-title {
     font-size: 1.3rem;
@@ -177,6 +192,23 @@ body {
     letter-spacing: 1px;
     position: relative;
     transition: color 0.6s ease;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -8px;
+    left: 50%;
+    background: #E246A1;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 10px #E246A1;
+}
+
+.section-title:hover::after {
+    width: 80%;
+    left: 10%;
 }
 
 .pills {
@@ -201,6 +233,22 @@ body {
     box-shadow: 0 4px 15px rgba(226, 70, 161, 0.1);
 }
 
+.pill:hover {
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 
+        0 15px 35px rgba(226, 70, 161, 0.4),
+        0 0 30px rgba(226, 70, 161, 0.5);
+    background: rgba(226, 70, 161, 0.4);
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .social-btn {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(226, 70, 161, 0.3);
@@ -216,12 +264,25 @@ body {
     box-shadow: 0 4px 15px rgba(226, 70, 161, 0.2);
 }
 
+.social-btn:hover {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 
+        0 20px 40px rgba(226, 70, 161, 0.5),
+        0 0 40px rgba(226, 70, 161, 0.6);
+    background: rgba(226, 70, 161, 0.4);
+}
+
 .social-icon {
     width: 32px;
     height: 32px;
     object-fit: contain;
     filter: brightness(0) saturate(100%) invert(61%) sepia(87%) saturate(2828%) hue-rotate(287deg) brightness(96%) contrast(104%);
     transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.social-btn:hover .social-icon {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(180deg) brightness(120%) contrast(110%);
+    transform: scale(1.2);
 }
 
 .discord-widget,
@@ -245,7 +306,13 @@ body {
     transition: all 0.5s ease;
 }
 
-/* ===== ANIMATIONS ===== */
+.lastfm-widget:hover img,
+.discord-widget:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(226, 70, 161, 0.6);
+}
+
+/* Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -277,112 +344,7 @@ body {
     to { border-right: none; }
 }
 
-.card {
-    animation: float 8s ease-in-out infinite, fadeInUp 1.2s ease-out forwards;
-}
-
-.section {
-    opacity: 0;
-    animation: fadeInUp 1s ease-out forwards;
-}
-
-.section:nth-child(1) { animation-delay: 0.3s; }
-.section:nth-child(2) { animation-delay: 0.5s; }
-.section:nth-child(3) { animation-delay: 0.7s; }
-.section:nth-child(4) { animation-delay: 0.9s; }
-.section:nth-child(5) { animation-delay: 1.1s; }
-.section:nth-child(6) { animation-delay: 1.3s; }
-.section:nth-child(7) { animation-delay: 1.5s; }
-
-.profile > * {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.profile .avatar-wrapper { animation-delay: 0.2s; }
-.profile .info { animation-delay: 0.4s; }
-.username { animation-delay: 0.6s; }
-.name { animation-delay: 0.8s; }
-.badges { animation-delay: 1.0s; }
-.bio { animation-delay: 1.2s; }
-
-.typewriter {
-    overflow: hidden;
-    border-right: 0.15em solid #E246A1;
-    white-space: nowrap;
-    margin: 0 auto;
-    letter-spacing: 0.15em;
-    animation: 
-        typing 2s steps(3, end) forwards,
-        blink-caret 0.75s step-end infinite;
-    display: inline-block;
-    width: 0;
-}
-
-.typewriter::after {
-    content: '';
-    animation: remove-cursor 0.1s forwards 2.5s;
-}
-
-/* ===== EFFECTS ===== */
-.avatar:hover {
-    box-shadow: 
-        0 0 40px rgba(226, 70, 161, 0.9),
-        0 0 80px rgba(226, 70, 161, 0.6),
-        0 0 120px rgba(226, 70, 161, 0.4);
-}
-
-.avatar-wrapper:hover .avatar {
-    box-shadow: 
-        0 0 40px rgba(226, 70, 161, 0.9),
-        0 0 80px rgba(226, 70, 161, 0.6),
-        0 0 120px rgba(226, 70, 161, 0.4);
-}
-
-.pill:hover {
-    transform: translateY(-8px) scale(1.1);
-    box-shadow: 
-        0 15px 35px rgba(226, 70, 161, 0.4),
-        0 0 30px rgba(226, 70, 161, 0.5);
-    background: rgba(226, 70, 161, 0.4);
-}
-
-.social-btn:hover {
-    transform: translateY(-10px) scale(1.1);
-    box-shadow: 
-        0 20px 40px rgba(226, 70, 161, 0.5),
-        0 0 40px rgba(226, 70, 161, 0.6);
-    background: rgba(226, 70, 161, 0.4);
-}
-
-.social-btn:hover .social-icon {
-    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(180deg) brightness(120%) contrast(110%);
-    transform: scale(1.2);
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -8px;
-    left: 50%;
-    background: #E246A1;
-    transition: all 0.4s ease;
-    box-shadow: 0 0 10px #E246A1;
-}
-
-.section-title:hover::after {
-    width: 80%;
-    left: 10%;
-}
-
-.lastfm-widget:hover img,
-.discord-widget:hover img {
-    transform: scale(1.05);
-    box-shadow: 0 15px 40px rgba(226, 70, 161, 0.6);
-}
-
+/* Cursor Trail */
 #cursor-trail {
     position: fixed;
     top: 0;
@@ -395,12 +357,11 @@ body {
 }
 
 @media (pointer: coarse) {
-    #cursor-trail {
-        display: none;
-    }
+    body { cursor: default; }
+    #cursor-trail { display: none; }
 }
 
-/* ===== THEME (LIGHT MODE) ===== */
+/* Light Mode */
 body.light-mode {
     background: #f0e6ff;
     color: #2d1b69;
@@ -450,7 +411,7 @@ body.light-mode .typewriter {
     border-right-color: #E246A1;
 }
 
-/* Theme Toggle Button */
+/* Theme Toggle */
 .theme-toggle {
     position: fixed;
     top: 20px;
@@ -489,4 +450,17 @@ body.light-mode .theme-toggle {
 
 body.light-mode .theme-toggle svg {
     transform: rotate(360deg);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .profile {
+        flex-direction: column;
+    }
+    .name {
+        font-size: 2.5rem;
+    }
+    .card {
+        padding: 2.5rem 1.5rem;
+    }
 }
