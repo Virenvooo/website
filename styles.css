@@ -367,23 +367,6 @@ body {
     to { border-right: none; }
 }
 
-/* Cursor Trail */
-#cursor-trail {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.6;
-}
-
-@media (pointer: coarse) {
-    body { cursor: default; }
-    #cursor-trail { display: none; }
-}
-
 /* Light Mode */
 body.light-mode {
     background: #f0e6ff;
@@ -500,4 +483,170 @@ body.light-mode .theme-toggle svg {
     .card {
         padding: 2.5rem 1.5rem;
     }
+}
+
+/* ===== NEON PULSE ON CARD BORDER ===== */
+.card {
+    position: relative;
+    animation: 
+        float 8s ease-in-out infinite,
+        fadeInUp 1.2s ease-out forwards,
+        neonPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+    from {
+        border-color: rgba(226, 70, 161, 0.5);
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.6),
+            0 0 20px rgba(226, 70, 161, 0.2);
+    }
+    to {
+        border-color: #E246A1;
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.6),
+            0 0 40px rgba(226, 70, 161, 0.5),
+            0 0 60px rgba(226, 70, 161, 0.3);
+    }
+}
+
+/* Light Mode: Softer pulse */
+body.light-mode .card {
+    animation: 
+        float 8s ease-in-out infinite,
+        fadeInUp 1.2s ease-out forwards,
+        neonPulseLight 4s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulseLight {
+    from {
+        border-color: rgba(226, 70, 161, 0.4);
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.1),
+            0 0 20px rgba(226, 70, 161, 0.15);
+    }
+    to {
+        border-color: #E246A1;
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.1),
+            0 0 35px rgba(226, 70, 161, 0.4);
+    }
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 12px; /* Width of vertical scrollbar */
+    height: 12px; /* Height of horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(10, 0, 31, 0.8); /* Dark track matching your background */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #E246A1, #c0398b);
+    border-radius: 10px;
+    border: 2px solid rgba(20, 15, 40, 0.8);
+    box-shadow: 
+        0 0 10px rgba(226, 70, 161, 0.6),
+        inset 0 0 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #ffffff, #E246A1);
+    box-shadow: 
+        0 0 20px rgba(226, 70, 161, 1),
+        inset 0 0 8px rgba(0, 0, 0, 0.4);
+    transform: scale(1.05);
+}
+
+/* Light Mode Scrollbar */
+body.light-mode ::-webkit-scrollbar-track {
+    background: rgba(240, 230, 255, 0.8);
+}
+
+body.light-mode ::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #E246A1, #d460b0);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+body.light-mode ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #E246A1, #ffffff);
+}
+
+/* ===== CLICK EFFECT CANVAS ===== */
+#click-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998; /* Below cursor trail but above everything else */
+}
+
+/* Prevent default cursor inside widgets and interactive elements */
+.lastfm-widget,
+.spotify-widget,
+.social-grid,
+.pill,
+.avatar-wrapper,
+.theme-toggle,
+.footer {
+    cursor: none;
+}
+
+.lastfm-widget img,
+.spotify-widget img,
+.social-btn,
+.social-btn img,
+.avatar,
+.pill,
+.theme-toggle,
+.footer a {
+    cursor: none;
+}
+
+/* ===== GLOWING CUSTOM CURSOR ===== */
+#glowing-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #E246A1 0%, rgba(226, 70, 161, 0.6) 40%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    box-shadow: 
+        0 0 20px #E246A1,
+        0 0 40px rgba(226, 70, 161, 0.8),
+        0 0 60px rgba(226, 70, 161, 0.4);
+    transition: transform 0.1s ease-out, opacity 0.3s ease;
+    opacity: 0;
+    mix-blend-mode: screen; /* Beautiful glow blend */
+}
+
+/* Show cursor when mouse moves */
+body:hover #glowing-cursor {
+    opacity: 1;
+}
+
+/* Larger glow on hover over interactive elements */
+a:hover ~ #glowing-cursor,
+.pill:hover ~ #glowing-cursor,
+.social-btn:hover ~ #glowing-cursor,
+.avatar-wrapper:hover ~ #glowing-cursor,
+.theme-toggle:hover ~ #glowing-cursor {
+    transform: translate(-50%, -50%) scale(1.5);
+    box-shadow: 
+        0 0 30px #E246A1,
+        0 0 60px rgba(226, 70, 161, 1),
+        0 0 90px rgba(226, 70, 161, 0.6);
+}
+
+/* Hide default cursor */
+body {
+    cursor: none;
 }

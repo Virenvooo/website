@@ -18,7 +18,10 @@
     </button>
 
     <!-- Cursor Trail -->
-    <canvas id="cursor-trail"></canvas>
+    <!-- Glowing Custom Cursor -->
+<div id="glowing-cursor"></div>
+    <!-- Click Effect Canvas -->
+<canvas id="click-effect"></canvas>
 
     <main class="container">
         <div class="card">
@@ -58,7 +61,7 @@
             </section>
 
             <section class="section">
-                <h2 class="section-title">CONNECT</h2>
+                <h2 class="section-title">LINKS</h2>
                 <div class="social-grid">
                     <a href="https://discord.com/users/823914932185202728" class="social-btn">
                         <img src="https://cdn.simpleicons.org/discord" alt="Discord" class="social-icon">
@@ -271,5 +274,100 @@
             });
         }
     </script>
+
+    <script>
+// Click Effect - Purple Neon Particles Burst
+const clickCanvas = document.getElementById('click-effect');
+const clickCtx = clickCanvas.getContext('2d');
+clickCanvas.width = window.innerWidth;
+clickCanvas.height = window.innerHeight;
+
+let clickParticles = [];
+
+document.addEventListener('click', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+
+    // Create 12-18 particles
+    for (let i = 0; i < Math.floor(Math.random() * 7 + 12); i++) {
+        clickParticles.push({
+            x: x,
+            y: y,
+            radius: Math.random() * 4 + 2,
+            color: `hsl(320, 80%, ${Math.random() * 30 + 60}%)`, // Purple-pink shades
+            velocityX: Math.random() * 8 - 4,
+            velocityY: Math.random() * 8 - 4,
+            life: 30
+        });
+    }
+});
+
+window.addEventListener('resize', () => {
+    clickCanvas.width = window.innerWidth;
+    clickCanvas.height = window.innerHeight;
+});
+
+function animateClickEffect() {
+    clickCtx.clearRect(0, 0, clickCanvas.width, clickCanvas.height);
+
+    clickParticles.forEach((p, i) => {
+        p.life--;
+        p.x += p.velocityX;
+        p.y += p.velocityY;
+        p.radius *= 0.95;
+
+        clickCtx.beginPath();
+        clickCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        clickCtx.fillStyle = p.color;
+        clickCtx.shadowBlur = 20;
+        clickCtx.shadowColor = p.color;
+        clickCtx.globalAlpha = p.life / 30;
+        clickCtx.fill();
+
+        if (p.life <= 0 || p.radius <= 0.5) {
+            clickParticles.splice(i, 1);
+        }
+    });
+
+    clickCtx.globalAlpha = 1;
+    requestAnimationFrame(animateClickEffect);
+}
+
+animateClickEffect();
+</script>
+<script>
+// Glowing Custom Cursor Follow (no variable conflicts)
+const cursor = document.getElementById('glowing-cursor');
+let currentX = 0;
+let currentY = 0;
+let targetX = 0;
+let targetY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+});
+
+function animateCursor() {
+    currentX += (targetX - currentX) * 0.3;
+    currentY += (targetY - currentY) * 0.3;
+
+    cursor.style.left = currentX + 'px';
+    cursor.style.top = currentY + 'px';
+
+    requestAnimationFrame(animateCursor);
+}
+
+animateCursor();
+
+// Show/hide on mouse enter/leave
+document.body.addEventListener('mouseenter', () => {
+    cursor.style.opacity = '1';
+});
+
+document.body.addEventListener('mouseleave', () => {
+    cursor.style.opacity = '0';
+});
+</script>
 </body>
 </html>
