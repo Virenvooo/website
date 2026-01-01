@@ -5,28 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vir's Website</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Particles.js -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
-    <!-- Particles Background -->
     <div id="particles-js"></div>
 
-    <!-- Theme Toggle Button -->
+    <!-- Theme Toggle -->
     <button class="theme-toggle" aria-label="Toggle dark/light mode">
         <svg id="theme-icon" viewBox="0 0 24 24">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
     </button>
 
-    <!-- Custom Cursor Trail Canvas -->
+    <!-- Cursor Trail -->
     <canvas id="cursor-trail"></canvas>
 
     <main class="container">
         <div class="card">
-            <!-- Profile Header -->
             <section class="profile">
-                <!-- 3D Avatar Wrapper -->
+                <!-- 3D Avatar Tilt Wrapper -->
                 <div class="avatar-wrapper">
                     <img src="https://media.discordapp.net/attachments/901178528798756864/1456183073564524554/ebd907b9d268ab18b7fa6b4afc0574c9.png?ex=69576fab&is=69561e2b&hm=a6299ac3edac2b43a04f384469d55a0f8db77c775e176f86ce6cc184ede0d5f0&=&format=webp&quality=lossless" alt="Avatar" class="avatar">
                 </div>
@@ -41,7 +38,7 @@
                         <span class="badge">🇮🇹 IT</span>
                     </div>
                     <p class="bio">
-                        Hey! Hope you're doing well, i'm Vir but you can call me whatever you want if i like it :D.
+                        Hey! Hope you're doing well, i'm Vir but you can call me whatever you want if i like it :D.<br>
                         I'm into gaming, tech, music and animes!
                     </p>
                 </div>
@@ -49,7 +46,6 @@
 
             <hr class="divider">
 
-            <!-- Interests -->
             <section class="section">
                 <h2 class="section-title">INTERESTS</h2>
                 <div class="pills">
@@ -61,7 +57,6 @@
                 <hr class="divider">
             </section>
 
-            <!-- Connections -->
             <section class="section">
                 <h2 class="section-title">CONNECT</h2>
                 <div class="social-grid">
@@ -89,7 +84,6 @@
                 <hr class="divider">
             </section>
 
-            <!-- Discord Status -->
             <section class="section">
                 <h2 class="section-title">DISCORD STATUS</h2>
                 <div class="discord-widget">
@@ -98,33 +92,36 @@
                 <hr class="divider">
             </section>
 
-            <!-- Spotify Currently Playing -->
             <section class="section">
                 <h2 class="section-title">CURRENTLY PLAYING ON SPOTIFY</h2>
                 <div class="lastfm-widget" style="max-width: 450px; padding: 0; background: transparent; border: none; box-shadow: none;">
                     <a href="https://open.spotify.com/user/mrfpf7omss9rmtuuebmymartk" target="_blank" style="display: block; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);">
-                        <img src="https://spotify-github-profile.kittinanx.com/api/view?uid=mrfpf7omss9rmtuuebmymartk&cover_image=true&theme=spotify-embed&show_offline=true&background_color=121212&interchange=false&profanity=false&mode=dark&bar_color=53b14f&bar_color_cover=false" 
-                             alt="Spotify Currently Playing" 
+                        <img src="https://spotify-github-profile.kittinanx.com/api/view?uid=mrfpf7omss9rmtuuebmymartk&cover_image=true&theme=spotify-embed&show_offline=true&background_color=121212&interchange=false&profanity=false&mode=dark&bar_color=53b14f&bar_color_cover=false"
+                             alt="Spotify Currently Playing"
                              style="width: 100%; height: auto; display: block; border-radius: 16px;">
                     </a>
                 </div>
                 <hr class="divider">
             </section>
 
-            <!-- Recently Played on Last.fm -->
             <section class="section">
                 <h2 class="section-title">RECENTLY PLAYED ON LAST.FM</h2>
                 <div class="lastfm-widget">
-                    <img src="https://lastfm-recently-played.vercel.app/api?user=Virenvo&count=10" 
-                         alt="Recently Played on Last.fm" 
+                    <img src="https://lastfm-recently-played.vercel.app/api?user=Virenvo&count=10"
+                         alt="Recently Played on Last.fm"
                          class="lastfm-image">
                 </div>
                 <hr class="divider">
             </section>
+
+            <!-- Footer inside card -->
+            <footer class="footer">
+                <p>Open source on my <a href="https://github.com/Virenvooo/" target="_blank">GitHub</a> — feel free to use it, modify it, or get inspired! ✨</p>
+            </footer>
         </div>
     </main>
 
-    <!-- Particles.js Config -->
+    <!-- Particles.js -->
     <script>
         particlesJS("particles-js", {
             "particles": {
@@ -161,7 +158,7 @@
         });
     </script>
 
-    <!-- Dark/Light Mode Toggle Script -->
+    <!-- Theme Toggle -->
     <script>
         const toggle = document.querySelector('.theme-toggle');
         const icon = document.getElementById('theme-icon');
@@ -176,7 +173,6 @@
 
         toggle.addEventListener('click', () => {
             body.classList.toggle('light-mode');
-
             if (body.classList.contains('light-mode')) {
                 localStorage.setItem('theme', 'light');
                 icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
@@ -187,11 +183,11 @@
         });
     </script>
 
-    <!-- Custom Glowing Cursor Trail -->
+    <!-- Cursor Trail + 3D Avatar Tilt -->
     <script>
+        // Cursor Trail
         const canvas = document.getElementById('cursor-trail');
         const ctx = canvas.getContext('2d');
-
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
@@ -240,30 +236,19 @@
             }
         }
 
-        function animate() {
+        function animateTrail() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            if (Math.random() < 0.7) {
-                particles.push(new Particle());
-            }
-
-            particles.forEach((particle, index) => {
-                particle.update();
-                particle.draw();
-
-                if (particle.life <= 0 || particle.size <= 0.2) {
-                    particles.splice(index, 1);
-                }
+            if (Math.random() < 0.7) particles.push(new Particle());
+            particles.forEach((p, i) => {
+                p.update();
+                p.draw();
+                if (p.life <= 0 || p.size <= 0.2) particles.splice(i, 1);
             });
-
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animateTrail);
         }
+        animateTrail();
 
-        animate();
-    </script>
-
-    <!-- 3D Avatar Tilt Script -->
-    <script>
+        // 3D Avatar Tilt
         const avatarWrapper = document.querySelector('.avatar-wrapper');
         const avatar = document.querySelector('.avatar');
 
@@ -282,7 +267,7 @@
             });
 
             avatarWrapper.addEventListener('mouseleave', () => {
-                avatar.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+                avatar.style.transform = 'rotateY(0) rotateX(0) scale(1)';
             });
         }
     </script>

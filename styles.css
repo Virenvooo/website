@@ -63,7 +63,7 @@ body {
     text-align: center;
 }
 
-/* ===== 3D AVATAR TILT ===== */
+/* 3D Avatar Tilt */
 .avatar-wrapper {
     perspective: 1000px;
     width: 150px;
@@ -84,7 +84,6 @@ body {
     transform-style: preserve-3d;
 }
 
-/* Stronger glow on hover */
 .avatar-wrapper:hover .avatar {
     box-shadow: 
         0 0 40px rgba(226, 70, 161, 0.9),
@@ -313,7 +312,30 @@ body {
     box-shadow: 0 15px 40px rgba(226, 70, 161, 0.6);
 }
 
-/* ===== ANIMATIONS & KEYFRAMES ===== */
+/* Footer */
+.footer {
+    margin-top: 4rem;
+    padding: 1.5rem 1rem 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(224, 208, 255, 0.6);
+    border-top: 1px solid rgba(226, 70, 161, 0.3);
+    transition: color 0.6s ease, border-top-color 0.6s ease;
+}
+
+.footer a {
+    color: #E246A1;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.footer a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(226, 70, 161, 0.8);
+}
+
+/* Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -362,7 +384,7 @@ body {
     #cursor-trail { display: none; }
 }
 
-/* ===== LIGHT MODE ===== */
+/* Light Mode */
 body.light-mode {
     background: #f0e6ff;
     color: #2d1b69;
@@ -412,7 +434,21 @@ body.light-mode .typewriter {
     border-right-color: #E246A1;
 }
 
-/* ===== THEME TOGGLE ===== */
+body.light-mode .footer {
+    color: rgba(45, 27, 105, 0.6);
+    border-top-color: rgba(226, 70, 161, 0.3);
+}
+
+body.light-mode .footer a {
+    color: #E246A1;
+}
+
+body.light-mode .footer a:hover {
+    color: #2d1b69;
+    text-shadow: 0 0 10px rgba(226, 70, 161, 0.5);
+}
+
+/* Theme Toggle */
 .theme-toggle {
     position: fixed;
     top: 20px;
