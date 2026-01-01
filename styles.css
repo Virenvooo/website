@@ -531,3 +531,44 @@ body.light-mode .theme-toggle svg {
         padding: 2.5rem 1.5rem;
     }
 }
+
+/* ================================= EDIT HERE: ANILIST WIDGET ================================= */
+/* 1. SIZE: Change max-width (450px=phone-friendly, 650px=tablet, 1000px=full wide) */
+/* 2. COLORS: Matches your pink theme automatically via existing classes */
+/* 3. MOBILE: Already responsive - auto-scales down */
+/* ================================================================== */
+.anilist-widget {
+    max-width: 650px;              /* ← EDIT: 450px (compact) | 1000px (full width) */
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(226, 70, 161, 0.3);  /* ← EDIT: Matches your pink theme */
+    background: rgba(20, 15, 40, 0.6);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.anilist-widget:hover {
+    transform: translateY(-5px);   /* ← EDIT: Change hover lift effect */
+    box-shadow: 0 15px 40px rgba(226, 70, 161, 0.6);  /* Pink glow */
+}
+
+.anilist-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    transition: transform 0.5s ease;
+}
+
+.anilist-widget:hover .anilist-image {
+    transform: scale(1.03);        /* ← EDIT: Hover zoom (1.02 = subtle, 1.05 = dramatic) */
+}
+
+/* Light mode compatibility (auto-adjusts) */
+body.light-mode .anilist-widget {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(226, 70, 161, 0.4);
+}
+/* ================================================================== */
