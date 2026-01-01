@@ -10,9 +10,9 @@
 <body>
 
     <!-- Top banner text - on top of everything -->
-<div class="top-banner">
-    <p>Open source on my GitHub</a> — feel free to use it, modify it, or get inspired! ✨</p>
-</div>
+    <div class="top-banner">
+        <p>Open source on my GitHub</a> — feel free to use it, modify it, or get inspired! ✨</p>
+    </div>
 
     <!-- Particles Background -->
     <div id="particles-js"></div>
@@ -29,6 +29,13 @@
 
     <!-- Click Effect Canvas -->
     <canvas id="click-effect"></canvas>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
 
     <!-- Main Content -->
     <main class="container">
@@ -135,7 +142,7 @@
 
             <!-- Footer -->
             <footer class="footer">
-                <p>Last change made : 01/01/2026 05:17pm CET✨</p>
+                <p>Last change made : 01/01/2026 06:03pm CET✨</p>
             </footer>
         </div>
     </main>
@@ -285,7 +292,28 @@
             requestAnimationFrame(animateClickEffect);
         }
         animateClickEffect();
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
+
+    <!-- Oneko Cat (only 1 cat, no duplicates) -->
     <script src="oneko.js"></script>
+
 </body>
 </html>
