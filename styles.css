@@ -152,7 +152,7 @@ body {
     line-height: 1.6;
     max-width: 600px;
     margin: 0 auto;
-    text-align: justify;
+    text-align: center;
 }
 
 /* ----- Sections & Layout ----- */
@@ -583,4 +583,93 @@ body.light-mode .anilist-widget {
 
 .discord-widget:hover .anilist-banner-widget {
     transform: scale(1.03);
+}
+
+/* Floating anime character - bottom right corner like catbox.moe */
+.floating-character {
+    position: fixed;          /* stays in place when scrolling */
+    bottom: -5px;             /* distance from bottom - edit this */
+    right: -40px;              /* distance from right - edit this */
+    z-index: 999;             /* on top of other content */
+    pointer-events: none;     /* so it doesn't block clicks (optional) */
+    opacity: 0.85;            /* slightly transparent - looks nicer */
+    transition: all 0.4s ease; /* smooth hover if you want */
+}
+
+.floating-character img {
+    width: 360px;             /* ← change size here */
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(226, 70, 161, 0.6)); /* pink glow to match your theme */
+}
+
+/* Optional: slight hover/bounce effect */
+.floating-character:hover {
+    transform: translateY(-10px);   /* lifts up a bit */
+    opacity: 1;
+}
+
+/* Avatar cutting the top border exactly in half */
+.avatar-border-cut {
+    position: absolute;
+    top: -75px;                  /* Half of avatar height (150px / 2 = 75px) */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.avatar-border-cut .avatar-wrapper {
+    width: 150px;
+    height: 150px;
+    margin: 0;
+}
+
+/* Make card relative and add top padding so content starts below the overlapping avatar */
+.card {
+    position: relative;          /* Important for absolute positioning */
+    padding-top: 100px;          /* Gives space for the bottom half of avatar + some breathing room */
+}
+
+/* Center everything in profile */
+.profile-hero {
+    position: relative;
+    text-align: center;
+}
+
+.profile-info,
+.bio-section {
+    text-align: center;
+}
+
+.bio-title {
+    display: inline-block;
+}
+
+/* Top banner - always visible on top of everything */
+.top-banner {
+    position: fixed;
+    top: 20px;                  /* Distance from top - adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;             /* Super high so it's above particles, card, toggle, etc. */
+    background: rgba(20, 15, 40, 0.6);
+    backdrop-filter: blur(10px);
+    color: var(--text-light);
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    border: 1px solid var(--primary);
+    font-size: 0.95rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(226, 70, 161, 0.3);
+    pointer-events: none;       /* So it doesn't block clicks */
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Optional: Push theme toggle down a bit so it doesn't overlap */
+.theme-toggle {
+    top: 80px;                  /* Was 20px — now lower to make room for banner */
 }
