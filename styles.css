@@ -177,12 +177,43 @@ body {
     text-align: center;
 }
 
+/* ==================== SECTION TITLE UNDERLINE ANIMATION ==================== */
+/* EDIT HERE: Change color, thickness, animation speed if you want */
+
 .section-title {
+    position: relative;
+    display: inline-block;           /* Important for centering the line */
     font-size: 1.3rem;
     color: var(--primary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    padding-bottom: 8px;             /* Space for the underline */
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;                     /* Thickness of the line */
+    bottom: 0;
+    left: 50%;
+    background: var(--primary);
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: width 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.section-title:hover::after {
+    width: 160%;                      /* How far it spreads (80% of title width) */
+    box-shadow: 0 0 20px var(--primary), 0 0 40px rgba(226, 70, 161, 0.6);
+}
+
+/* Optional: subtle lift on hover for the text */
+.section-title:hover {
+    transform: translateY(-3px);
+    transition: transform 0.4s ease;
 }
 
 /* Interests Pills */
@@ -191,6 +222,7 @@ body {
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
+    font-weight: bold;
 }
 
 .pill {
@@ -289,7 +321,7 @@ body {
 /* Theme Toggle */
 .theme-toggle {
     position: fixed;
-    top: 80px;
+    top: 30px;
     right: 20px;
     z-index: 1000;
     background: rgba(20, 15, 40, 0.6);
@@ -340,15 +372,15 @@ body {
 /* Floating Character */
 .floating-character {
     position: fixed;
-    bottom: -5px;
-    right: -50px;
+    bottom: -27px;
+    right: -70px;
     z-index: 999;
     pointer-events: none;
     opacity: 0.85;
 }
 
 .floating-character img {
-    width: 360px;
+    width: 450px;
     height: auto;
     filter: drop-shadow(0 10px 20px rgba(226, 70, 161, 0.6));
 }
@@ -361,8 +393,8 @@ body {
 /* Glowing Cursor */
 #glowing-cursor {
     position: fixed;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
@@ -487,4 +519,65 @@ a *, button *, .pill *, .badge *, .social-btn *, .avatar-wrapper *,
 /* Optional: Hide default cursor on the entire body (your glowing cursor will show instead) */
 body {
     cursor: none !important;
+}
+
+span {
+    font-weight: bold;
+}
+
+.badges {
+    font-weight: bold;
+}
+
+.floating-character {
+    animation: floatSway 7s ease-in-out infinite;
+}
+
+@keyframes floatSway {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-10px, -20px) rotate(-3deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Default (dark mode) */
+#theme-icon path {
+    fill: white;
+    transition: fill 0.3s ease;
+}
+
+/* Light mode */
+body.light-mode #theme-icon path {
+    fill: black;
+}
+
+/* Default (dark theme) */
+#glowing-cursor {
+    border: 2px solid white;
+}
+
+/* Light theme */
+body.light-mode #glowing-cursor {
+    border: 2px solid black;
+}
+
+/* Dark theme → white icon */
+.github-icon {
+    filter: invert(1);
+    transition: filter 0.3s ease;
+}
+
+/* Light theme → black icon */
+body.light-mode .github-icon {
+    filter: invert(0);
+}
+
+/* Dark theme → white icon */
+.steam-icon {
+    filter: invert(1);
+    transition: filter 0.3s ease;
+}
+
+/* Light theme → black icon */
+body.light-mode .steam-icon {
+    filter: invert(0);
 }
