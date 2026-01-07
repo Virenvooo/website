@@ -16,6 +16,11 @@
         <p>Open source on my GitHub — feel free to use it, modify it, or get inspired! ✨</p>
     </div>
 
+    <nav class="main-nav">
+  <a href="index.html" class="nav-link active">Home</a>
+</nav>
+
+
     <!-- ==================== BACKGROUND EFFECTS ==================== -->
     <div id="particles-js"></div>
     <canvas id="snow-canvas"></canvas>
@@ -35,9 +40,6 @@
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
-
-    <!-- Glowing Custom Cursor -->
-    <div id="glowing-cursor"></div>
 
     <!-- ==================== FLOATING CHARACTER ==================== -->
     <!-- EDIT HERE: Change the image URL to your preferred anime mascot (transparent PNG best) -->
@@ -63,11 +65,11 @@
                     <h1 class="name gradient-text">Vir</h1>
 
                     <div class="badges">
-                        <span class="badge">14-Years-Old</span>
+                        <span class="badge">🧒 14-Years-Old</span>
                         <span class="badge">🎂 Oct 13</span>
-                        <span class="badge">He/Him</span>
-                        <span class="badge">ISTP-T</span>
-                        <span class="badge">Italy</span>
+                        <span class="badge">♂️ He/Him</span>
+                        <span class="badge">😒 ISTP-T</span>
+                        <span class="badge">🍕Italy</span>
                     </div>
                 </div>
 
@@ -119,6 +121,11 @@
                         <img src="https://cdn.simpleicons.org/anilist" class="social-icon" alt="AniList">
                         <span>AniList</span>
                     </a>
+                    <a href="https://steamcommunity.com/id/Virenvo/" class="social-btn">
+  <img src="https://cdn.simpleicons.org/steam" class="social-icon" alt="Steam">
+  <span>Steam</span>
+</a>
+
                 </div>
             </section>
 
@@ -131,17 +138,6 @@
                     <img src="https://discord.c99.nl/widget/theme-1/823914932185202728.png"
                          alt="Discord Status" class="discord-banner-widget" loading="lazy">
                 </div>
-            </section>
-
-            <hr class="divider reveal">
-
-            <!-- AniList Card -->
-            <section class="section reveal">
-                <h2 class="section-title">ANILIST CARD</h2>
-                <a href="https://anilist.co/user/Vir" target="_blank" class="anilist-wrapper">
-                    <img src="https://anilist-serve.federico-zhouu.workers.dev"
-                         alt="AniList Stats" class="anilist-img" loading="lazy">
-                </a>
             </section>
 
             <hr class="divider reveal">
@@ -174,52 +170,11 @@
 
             <!-- Footer -->
             <footer class="footer">
-                <p>Last change made: 2nd Jan 2026 06:41pm CET ✨</p>
+                <p>Last change made: 7nd Jan 2026 07:21am CET ✨</p>
             </footer>
 
         </div>
     </main>
-
-    <!-- ==================== FIXED BOTTOM MUSIC PLAYER ==================== -->
-    <div class="music-player-bar">
-        <div class="music-player-cover">
-            <img id="player-cover" src="song-cover/cover1.jpg" alt="Album cover">
-        </div>
-
-        <div class="music-player-main">
-            <!-- Top: Progress + Volume -->
-            <div class="music-player-top">
-                <div class="music-player-progress">
-                    <span id="current-time">0:00</span>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progress-fill"></div>
-                    </div>
-                    <span id="duration">0:00</span>
-                </div>
-
-                <div class="music-player-volume">
-                    <svg viewBox="0 0 24 24" width="20" height="20">
-                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                    </svg>
-                    <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
-                </div>
-            </div>
-
-            <!-- Bottom: Prev / Play / Next -->
-            <div class="music-player-bottom-controls">
-                <button id="prev-btn" class="control-btn">⏮</button>
-                <button id="play-pause-btn" class="control-btn play-pause">
-                    <svg viewBox="0 0 24 24" width="32" height="32">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                </button>
-                <button id="next-btn" class="control-btn">⏭</button>
-            </div>
-        </div>
-
-        <!-- Hidden audio -->
-        <audio id="audio-player" preload="metadata"></audio>
-    </div>
 
     <!-- ==================== ALL SCRIPTS ==================== -->
     <script>
@@ -266,20 +221,6 @@ themeToggle.addEventListener('click', () => {
         localStorage.setItem('theme', 'dark');
     }
 });
-
-        /* GLOWING CURSOR */
-        const cursor = document.getElementById('glowing-cursor');
-        let cx = 0, cy = 0, tx = 0, ty = 0;
-        const easing = 0.25;
-        document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
-        function animateCursor() {
-            cx += (tx - cx) * easing;
-            cy += (ty - cy) * easing;
-            cursor.style.left = cx + 'px';
-            cursor.style.top = cy + 'px';
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
 
         /* 3D AVATAR TILT */
         const avatarWrapper = document.querySelector('.avatar-wrapper');
@@ -391,106 +332,20 @@ themeToggle.addEventListener('click', () => {
             requestAnimationFrame(drawSnow);
         }
         drawSnow();
+const floatingCharacter = document.querySelector('.floating-character');
+const audio = document.getElementById('player');
 
-/* ==================== MUSIC PLAYER FULL FIX ==================== */
-const audioPlayer = document.getElementById('audio-player');
-const playPauseBtn = document.getElementById('play-pause-btn');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-const progressFill = document.getElementById('progress-fill');
-const currentTimeEl = document.getElementById('current-time');
-const durationEl = document.getElementById('duration');
-const volumeSlider = document.getElementById('volume-slider');
-const coverImg = document.getElementById('player-cover');
+if (floatingCharacter && audio) {
+    audio.addEventListener('play', () => {
+        floatingCharacter.classList.add('playing');
+    });
 
-const playlist = [
-    { src: "song-cover/song1.mp3", cover: "song-cover/cover1.jpg" },
-    { src: "song-cover/song2.mp3", cover: "song-cover/cover2.jpg" },
-    { src: "song-cover/song3.mp3", cover: "song-cover/cover3.jpg" },
-    { src: "song-cover/song4.mp3", cover: "song-cover/cover4.jpg" }
-];
-
-let currentIndex = 0;
-let unlocked = false;
-
-// Unlock and auto-play on first click anywhere
-function unlockAndPlay() {
-    if (unlocked) return;
-    audioPlayer.play().then(() => {
-        unlocked = true;
-        playPauseBtn.innerHTML = '<svg viewBox="0 0 24 24" width="32" height="32"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
-    }).catch(() => {});
-}
-document.body.addEventListener('click', unlockAndPlay, { once: true });
-document.body.addEventListener('touchstart', unlockAndPlay, { once: true });
-
-// Load song
-function loadSong(index) {
-    const song = playlist[index];
-    audioPlayer.src = song.src;
-    coverImg.src = song.cover;
-    audioPlayer.load();
+    audio.addEventListener('pause', () => {
+        floatingCharacter.classList.remove('playing');
+    });
 }
 
-// Play/Pause
-playPauseBtn.addEventListener('click', () => {
-    if (audioPlayer.paused) {
-        audioPlayer.play();
-        playPauseBtn.innerHTML = '<svg viewBox="0 0 24 24" width="32" height="32"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
-    } else {
-        audioPlayer.pause();
-        playPauseBtn.innerHTML = '<svg viewBox="0 0 24 24" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>';
-    }
-});
 
-// Prev / Next with auto-play
-prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-    loadSong(currentIndex);
-    audioPlayer.play();
-});
-
-nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % playlist.length;
-    loadSong(currentIndex);
-    audioPlayer.play();
-});
-
-// Auto-next when song ends
-audioPlayer.addEventListener('ended', () => {
-    currentIndex = (currentIndex + 1) % playlist.length;
-    loadSong(currentIndex);
-    audioPlayer.play();
-});
-
-// Volume
-if (volumeSlider) {
-    audioPlayer.volume = volumeSlider.value;
-    volumeSlider.addEventListener('input', e => audioPlayer.volume = e.target.value);
-}
-
-// Progress & time
-audioPlayer.addEventListener('timeupdate', () => {
-    if (audioPlayer.duration) {
-        const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-        progressFill.style.width = `${progress}%`;
-        currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
-    }
-});
-
-audioPlayer.addEventListener('loadedmetadata', () => {
-    durationEl.textContent = formatTime(audioPlayer.duration);
-});
-
-function formatTime(s) {
-    if (isNaN(s)) return "0:00";
-    const m = Math.floor(s / 60);
-    const sec = Math.floor(s % 60);
-    return `${m}:${sec.toString().padStart(2, '0')}`;
-}
-
-// Load first song
-loadSong(0);
     </script>
 
     <!-- ONEKO CAT -->
