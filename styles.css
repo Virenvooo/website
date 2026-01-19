@@ -1121,3 +1121,45 @@ body.light-mode .footer {
   transform: translateZ(0);             /* forces hardware acceleration */
   z-index: 2;                           /* adjust if needed */
 }
+
+/* Custom Scrollbar - tema Vir (viola/purple + pink accents) */
+:root {
+  --scrollbar-track: rgba(18, 0, 34, 0.7);      /* molto scuro come bg-dark ma un po' trasparente */
+  --scrollbar-thumb: var(--primary);            /* #9d4edd viola principale */
+  --scrollbar-thumb-hover: var(--primary-pink); /* #da3c72 pink-magenta quando passi sopra */
+  --scrollbar-thumb-active: #c084fc;            /* un viola un po' più chiaro quando clicchi */
+}
+
+/* Chrome, Edge, Opera, nuovi Safari */
+::-webkit-scrollbar {
+  width: 10px;           /* spessore - 8px se vuoi ancora più sottile */
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 10px;
+  margin: 2px;           /* piccolo margine per non toccare i bordi */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+  border: 3px solid var(--scrollbar-track);   /* crea effetto "incassato" */
+  transition: all 0.25s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--scrollbar-thumb-active);
+}
+
+/* Firefox (supporto base molto buono con queste proprietà) */
+* {
+  scrollbar-width: thin;                    /* thin / auto / none */
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
