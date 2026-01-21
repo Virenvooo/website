@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vir's Website</title>
+    <title>@vir</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Particles.js Background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/Kf3ce5h.png">
+    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/8XlI3tq.png">
+    
 </head>
 <body>
 
     <!-- ==================== TOP BANNER ==================== -->
     <!-- EDIT HERE: Change the message if you want -->
     <div class="top-banner">
-        <p>Open source on my GitHub — feel free to use it, modify it, or get inspired! ✨</p>
+        <p>Open source on my GitHub - feel free to use it, modify it, or get inspired! ✨</p>
     </div>
 </nav>
 
 
     <!-- ==================== BACKGROUND EFFECTS ==================== -->
     <div id="particles-js"></div>
-    <canvas id="snow-canvas"></canvas>
     <canvas id="click-effect"></canvas>
 
     <!-- ==================== FLOATING CHARACTER ==================== -->
@@ -55,14 +55,6 @@
                         <span class="badge">😒 ISTP-T</span>
                         <span class="badge">🍕Italy</span>
                     </div>
-                </div>
-
-                <div class="bio-container">
-                    <h2 class="section-title bio-title">BIO</h2>
-                    <p class="bio">
-                        Hey! Hope you're doing well, I'm Vir but you can call me whatever you want if I like it :D.<br>
-                        I'm into gaming, tech, music and animes!
-                    </p>
                 </div>
             </section>
 
@@ -154,7 +146,7 @@
 
             <!-- Footer -->
             <footer class="footer">
-                <p>Last change made: 14th Jan 2026 ✨</p>
+                <p>Last change made: 21th Jan 2026 ✨</p>
             </footer>
 
         </div>
@@ -163,46 +155,32 @@
     <!-- ==================== ALL SCRIPTS ==================== -->
 <script>
     // PARTICLES.JS - starry purple-pink background
-    particlesJS("particles-js", {
-        particles: {
-            number: { value: 70, density: { enable: true, value_area: 800 } },
-            color: { value: ["#9d4edd", "#da3c72", "#bb86fc"] },
-            shape: { type: "circle" },
-            opacity: { value: 0.6, random: true },
-            size: { value: 3.5, random: true },
-            line_linked: { 
-                enable: true, 
-                distance: 140, 
-                color: "#bb86fc", 
-                opacity: 0.35, 
-                width: 1 
-            },
-            move: { enable: true, speed: 1.4, direction: "none", random: true }
+particlesJS("particles-js", {
+    particles: {
+        number: { value: 35 },                    // ← was 70, big saving
+        color: { value: ["#9d4edd", "#da3c72", "#bb86fc"] },
+        opacity: { value: 0.5, random: true },
+        size: { value: 2.8, random: true },
+        line_linked: { 
+            enable: false,                        // ← disable lines = ~30–40% faster
+            distance: 150,
+            color: "#bb86fc",
+            opacity: 0.3,
+            width: 1
         },
-        interactivity: {
-            detect_on: "canvas",
-            events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: false } }
-        },
-        retina_detect: true
-    });
-
-    // 3D AVATAR TILT
-    const avatarWrapper = document.querySelector('.avatar-wrapper');
-    const avatar = document.querySelector('.avatar');
-    if (avatarWrapper && avatar) {
-        avatarWrapper.addEventListener('mousemove', e => {
-            const rect = avatarWrapper.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const rx = ((rect.height / 2 - y) / (rect.height / 2)) * 20;
-            const ry = ((x - rect.width / 2) / (rect.width / 2)) * 20;
-            avatar.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.08)`;
-        });
-        avatarWrapper.addEventListener('mouseleave', () => {
-            avatar.style.transform = 'rotateX(0) rotateY(0) scale(1)';
-        });
-    }
-
+        move: { 
+            enable: true, 
+            speed: 1.1,                           // slower = less redraw pressure
+            direction: "none", 
+            random: true 
+        }
+    },
+    interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: false }, onclick: { enable: false } }  // disable hover = faster
+    },
+    retina_detect: true
+});
     // CLICK PARTICLES - restored and working
     const clickCanvas = document.getElementById('click-effect');
     const clickCtx = clickCanvas.getContext('2d');
@@ -210,7 +188,7 @@
     clickCanvas.height = window.innerHeight;
     let clickParticles = [];
     document.addEventListener('click', e => {
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 8; i++) {
             clickParticles.push({
                 x: e.clientX,
                 y: e.clientY,
@@ -255,41 +233,6 @@
     }
     window.addEventListener('scroll', reveal);
     window.addEventListener('load', reveal);
-
-    // SNOW EFFECT - fully restored
-    const snowCanvas = document.getElementById('snow-canvas');
-    const snowCtx = snowCanvas.getContext('2d');
-    function resizeSnow() {
-        snowCanvas.width = window.innerWidth;
-        snowCanvas.height = window.innerHeight;
-    }
-    resizeSnow();
-    window.addEventListener('resize', resizeSnow);
-    let flakes = [];
-    function createFlake() {
-        flakes.push({
-            x: Math.random() * snowCanvas.width,
-            y: -10,
-            size: Math.random() * 3 + 1,
-            speed: Math.random() * 1 + 0.5,
-            drift: Math.random() * 0.5 - 0.25
-        });
-    }
-    function drawSnow() {
-        snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-        snowCtx.fillStyle = "rgba(255,255,255,0.9)"; // always white snow in dark theme
-        flakes.forEach((f, i) => {
-            snowCtx.beginPath();
-            snowCtx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
-            snowCtx.fill();
-            f.y += f.speed;
-            f.x += f.drift;
-            if (f.y > snowCanvas.height) flakes.splice(i, 1);
-        });
-        if (flakes.length < 120) createFlake();
-        requestAnimationFrame(drawSnow);
-    }
-    drawSnow();
 
     // Gentle mouse parallax on card
     const card = document.querySelector('.card');
