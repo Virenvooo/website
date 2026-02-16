@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@projects – Vir</title>
+    <title>@</title>
+    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/8XlI3tq.png"/>
 
     <!-- Main site styles -->
     <link rel="stylesheet" href="../styles.css">
@@ -18,6 +19,7 @@
 
     <!-- Background layers (same as index) -->
     <div class="floating-orbs"></div>
+    <div id="mouse-spotlight"></div>
     <div id="particles-js"></div>
     <canvas id="click-effect"></canvas>
 
@@ -77,17 +79,27 @@
     <!-- Particles init -->
     <script>
     particlesJS("particles-js", {
-      particles: {
-        number: { value: 18 },
-        color: { value: ["#9d4edd", "#bb86fc"] },
-        opacity: { value: 0.45, random: true },
-        size: { value: 2.2, random: true },
-        line_linked: { enable: false },
-        move: { enable: true, speed: 0.7, random: true }
-      },
-      interactivity: { events: { onhover: { enable: false }, onclick: { enable: false } } },
-      retina_detect: false
-    });
+  particles: {
+    number: { value: 55 }, // molte più particelle
+    color: { value: ["#bb86fc", "#9d4edd", "#da3c72"] },
+    opacity: { value: 0.8, random: true },
+    size: { value: 3.2, random: true }, // più grandi e visibili
+    line_linked: { enable: false },
+    move: {
+      enable: true,
+      speed: 2.8,        // molto più veloce
+      direction: "none",
+      random: true,
+      straight: false,
+      out_mode: "out"
+    }
+  },
+  interactivity: {
+    events: { onhover: { enable: false }, onclick: { enable: false } }
+  },
+  retina_detect: true
+});
+
     </script>
 
     <!-- Click effect -->
@@ -136,7 +148,33 @@
       requestAnimationFrame(animateClick);
     }
     animateClick();
+
+    const spotlight = document.getElementById("mouse-spotlight");
+  let mouseX = 0, mouseY = 0;
+  let orbX = 0, orbY = 0;
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animateSpotlight() {
+    // smoothing (lerp)
+    orbX += (mouseX - orbX) * 0.30;
+    orbY += (mouseY - orbY) * 0.30;
+
+    spotlight.style.transform = `translate(${orbX - 130}px, ${orbY - 130}px)`;
+
+    requestAnimationFrame(animateSpotlight);
+  }
+
+  animateSpotlight();
+
+  const framesProjects = [ "@", "@p", "@pr", "@pro", "@proj", "@proje", "@projec", "@project", "@projects", "@projects ", "@projects -", "@projects - ", "@projects - v", "@projects - vi", "@projects - vir", "@projects - vi", "@projects - v", "@projects - ", "@projects -", "@projects ", "@projects", "@project", "@projec", "@proje", "@proj", "@pro", "@pr", "@p", "@" ]; let titleIndex = 0; setInterval(() => { document.title = framesProjects[titleIndex]; titleIndex = (titleIndex + 1) % framesProjects.length; }, 500);
+
     </script>
+    
+    <script src="./oneko.js"></script>
 
 </body>
 </html>

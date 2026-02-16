@@ -299,3 +299,25 @@
 .project-link:hover .project-card {
     cursor: pointer;
 }
+
+#mouse-spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2; /* sopra particles, sotto click-effect */
+    background: radial-gradient(
+        circle,
+        rgba(187, 134, 252, 0.35) 0%,
+        rgba(157, 78, 221, 0.18) 40%,
+        rgba(18, 0, 34, 0) 70%
+    );
+    filter: blur(40px);
+    transform: translate(-50%, -50%);
+    transition: opacity 0.25s ease;
+    opacity: 0.8;
+    mix-blend-mode: screen; /* effetto ryuu.lol */
+}

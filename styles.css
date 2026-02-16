@@ -81,17 +81,20 @@ body {
     overflow: hidden;
 }
 
-.floating-orbs::before,
-.floating-orbs::after {
-    content: "";
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    filter: blur(60px);           /* reduced from 80px – better perf */
-    opacity: 0.3;
-    animation: orbFloat 18s ease-in-out infinite alternate;
+.floating-orbs::before {
+    background: rgba(157, 78, 221, 0.65);
+    top: 5%;
+    left: 10%;
+    animation-duration: 18s; /* più veloce */
 }
+
+.floating-orbs::after {
+    background: rgba(187, 134, 252, 0.55);
+    bottom: 8%;
+    right: 12%;
+    animation-duration: 20s; /* più veloce */
+}
+
 
 .floating-orbs::before {
     background: rgba(157, 78, 221, 0.5);
@@ -305,7 +308,7 @@ body {
 .social-icon {
     width: 34px !important;
     height: 34px !important;
-    filter: brightness(0) saturate(100%) invert(65%) sepia(90%) saturate(1100%) hue-rotate(225deg) brightness(105%) contrast(105%) !important;
+    filter: brightness(0) saturate(100%) invert(65%) sepia(90%) saturate(1100%) hue-rotate(225deg) brightness(75%) contrast(105%) !important;
     transition: transform 0.25s ease;
 }
 
@@ -535,3 +538,71 @@ body {
 .project-btn:hover .project-icon {
     transform: scale(1.15);
 }
+
+#mouse-spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2; /* sopra particles, sotto click-effect */
+    background: radial-gradient(
+        circle,
+        rgba(187, 134, 252, 0.35) 0%,
+        rgba(157, 78, 221, 0.18) 40%,
+        rgba(18, 0, 34, 0) 70%
+    );
+    filter: blur(40px);
+    transform: translate(-50%, -50%);
+    transition: opacity 0.25s ease;
+    opacity: 0.8;
+    mix-blend-mode: screen; /* effetto ryuu.lol */
+}
+
+/* ───────────────────────────────────────────────
+   COSMIC INTRO OVERLAY
+   ─────────────────────────────────────────────── */
+#intro-overlay {
+    position: fixed;
+    inset: 0;
+    background: #0a0014;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.8s ease;
+}
+
+#intro-overlay.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.intro-content {
+    text-align: center;
+    animation: introFade 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes introFade {
+    0%   { opacity: 0.55; transform: translateY(4px); }
+    100% { opacity: 1;    transform: translateY(-4px); }
+}
+
+.intro-title {
+    font-size: 2.8rem;
+    color: #f0e6ff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 18px rgba(187,134,252,0.7);
+}
+
+.intro-sub {
+    margin-top: 0.6rem;
+    font-size: 1.1rem;
+    opacity: 0.7;
+    color: #bb86fc;
+}
+

@@ -5,7 +5,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>@vir</title>
+  <title>@</title>
   <link rel="icon" type="image/x-icon" href="https://i.imgur.com/8XlI3tq.png"/>
   <link rel="stylesheet" href="styles.css"/>
 
@@ -16,6 +16,7 @@
 
   <!-- Background layers -->
   <div class="floating-orbs"></div>
+  <div id="mouse-spotlight"></div>
   <div id="particles-js"></div>
   <canvas id="click-effect"></canvas>
 
@@ -129,17 +130,26 @@
   <script>
     // ─── Particles ───────────────────────────────────────
     particlesJS("particles-js", {
-      particles: {
-        number: { value: 18 },
-        color: { value: ["#9d4edd", "#bb86fc"] },
-        opacity: { value: 0.45, random: true },
-        size: { value: 2.2, random: true },
-        line_linked: { enable: false },
-        move: { enable: true, speed: 0.7, direction: "none", random: true }
-      },
-      interactivity: { events: { onhover: { enable: false }, onclick: { enable: false } } },
-      retina_detect: false
-    });
+  particles: {
+    number: { value: 40 }, // più particelle
+    color: { value: ["#bb86fc", "#9d4edd", "#da3c72"] },
+    opacity: { value: 0.7, random: true },
+    size: { value: 2.8, random: true }, // più visibili
+    line_linked: { enable: false },
+    move: {
+      enable: true,
+      speed: 2.2,        // molto più veloce
+      direction: "none",
+      random: true,
+      straight: false,
+      out_mode: "out"
+    }
+  },
+  interactivity: {
+    events: { onhover: { enable: false }, onclick: { enable: false } }
+  },
+  retina_detect: true
+});
 
     // ─── Click particles (very lightweight version) ───────
     const clickCanvas = document.getElementById('click-effect');
@@ -207,6 +217,27 @@
         document.title = frames[i];
         i = (i + 1) % frames.length;
     }, 500); // speed (ms)
+
+  const spotlight = document.getElementById("mouse-spotlight");
+    let mouseX = 0, mouseY = 0;
+    let orbX = 0, orbY = 0;
+
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateSpotlight() {
+      // smoothing (lerp)
+      orbX += (mouseX - orbX) * 0.30;
+      orbY += (mouseY - orbY) * 0.30;
+
+      spotlight.style.transform = `translate(${orbX - 130}px, ${orbY - 130}px)`;
+
+      requestAnimationFrame(animateSpotlight);
+    }
+
+    animateSpotlight();
 
   </script>
 
