@@ -2,70 +2,56 @@
 
 A clean, cosmic-themed personal website with purple/neon vibes, floating particles, click effects, anime mascot, Discord & Spotify widgets, and a dedicated projects showcase page.
 
-Live at: https://virenvooo.github.io/website/  
-(← replace with your actual GitHub Pages / custom domain link when you deploy it)
+**Live demo:** https://virenvo.pages.dev/
 
 ![Website preview](https://i.imgur.com/ZFulVl8.png)  
 
 ## ✨ Features
 
-- Dark cosmic purple aesthetic with floating blurred orbs
+- Deep cosmic purple aesthetic with floating blurred orbs
 - Interactive particles.js background
 - Click → colorful particle burst effect
-- Floating anime-style mascot (desktop only)
-- Glassmorphism cards + hover lift effects
-- Responsive design (mobile → tablet → desktop)
+- Floating anime-style mascot (visible on desktop)
+- Glassmorphism cards with hover lift & glow effects
+- Fully responsive (mobile → tablet → desktop)
 - Discord status widget
 - Spotify "Currently Playing" embed
 - Dedicated `/projects` page with card grid & hover expand icons
-- Simple, lightweight, no heavy frameworks
+- Lightweight – no heavy frameworks
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
-- HTML5 + CSS3 (vanilla with custom properties)
+- HTML5 + CSS3 (vanilla with CSS custom properties)
 - Google Fonts (Poppins)
 - particles.js (background particles)
-- Custom click-canvas effect (very lightweight)
+- Custom lightweight canvas click effect
 - External widgets: Discord banner, Spotify GitHub profile card
-- Lucide icons (optional – for project buttons)
+- Optional: Lucide icons (for buttons & expand symbols)
 
-## 📂 Project Structure
-website/
-├── index.html              # main landing page
-├── styles.css              # global styles + theme
+## 📂 Folder Structure
+```website/
+├── index.html              # Main landing page
+├── styles.css              # Global styles & theme
 ├── projects_page/
-│   ├── projects.html       # projects showcase
-│   └── projects.css        # project-specific styles
-├── oneko.js                # optional fun cat cursor (if you kept it)
+│   ├── projects.html       # Projects showcase page
+│   └── projects.css        # Project-specific styles
+├── oneko.js                # Optional: fun cat cursor animation
 └── README.md
+```
 
-## 🚀 How to run locally
+
+## 🚀 How to Run Locally
 
 1. Clone the repository
 
 ```bash
 git clone https://github.com/Virenvooo/website.git
 cd website
-Open index.html in your browser
-You can use any local server if you prefer (recommended):
-Bash# with Python (most people have it)
-python -m http.server 8000
-# or
-npx serve
-# or VS Code Live Server extension
-Then visit http://localhost:8000
 ```
-
-🌌 Customization
-Quick places to change things:
-
-Colors → edit :root variables in styles.css
-Avatar / mascot → replace img src in index.html
-Particles config → look at the <script> block at bottom of index.html
-Projects → add/remove cards in projects_page/projects.html
-Widgets → update user IDs in the img src URLs
+Open the site by opening the index.html
 
 📜 License
-MIT License – feel free to fork, modify, use as inspiration or even as a template.
-Made with ♥ by a 14-year-old who likes animanga, tech & purple colors
+MIT License
+Feel free to fork, modify, use as inspiration, or take parts for your own site.
+Made with ♥ by Vir.
 Last updated: February 2026
