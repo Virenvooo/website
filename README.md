@@ -4,6 +4,7 @@ A clean, cosmic-themed personal website with purple/neon vibes, floating particl
 
 **Live demo:** https://virenvo.pages.dev/
 
+Sorry for bad res.
 ![Website preview](https://i.imgur.com/2YGLVa9.jpeg)  
 
 ## ✨ Features
