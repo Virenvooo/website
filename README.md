@@ -32,8 +32,11 @@ Sorry for bad res.
 ├── styles.css              # Global styles & theme
 ├── projects_page/
 │   ├── projects.html       # Projects showcase page
+│   ├── oneko.js
+│   ├── oneko.gif
 │   └── projects.css        # Project-specific styles
-├── oneko.js                # Optional: fun cat cursor animation
+├── oneko.gif
+├── oneko.js              
 └── README.md
 ```
 
