@@ -2,56 +2,46 @@
 <html lang="en">
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>@</title>
-  <link rel="icon" type="image/x-icon" href="https://i.imgur.com/8XlI3tq.png"/>
-  <link rel="stylesheet" href="styles.css"/>
-
-  <!-- Particles.js – consider replacing with lighter alternative later -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@</title>
+    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/8XlI3tq.png"/>
+    <link rel="stylesheet" href="styles.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
 
-  <!-- Background layers -->
   <div class="floating-orbs"></div>
   <div id="mouse-spotlight"></div>
+  <div id="custom-cursor">♠</div>
   <div id="particles-js"></div>
+  <canvas id="cards-canvas"></canvas>
   <canvas id="click-effect"></canvas>
 
-  <!-- Floating mascot (desktop only) -->
-  <div class="floating-character">
-    <img src="https://i.imgur.com/LDJIvgR.png" alt="Cute anime mascot" loading="lazy"/>
-  </div>
 
-  <!-- Top banner -->
+
   <div class="top-banner">
     <p>Open source on my GitHub – feel free to use, modify or get inspired! ✨</p>
   </div>
 
-  <!-- Main content -->
   <main class="container">
     <div class="card">
 
-      <!-- Profile -->
       <section class="profile">
         <div class="avatar-wrapper">
-          <img src="https://i.imgur.com/8RlCVOA.png" class="avatar" alt="Vir's avatar" loading="lazy"/>
+          <img src="https://i.imgur.com/PKeQtP8.jpeg" class="avatar" alt="Vir's avatar" loading="lazy"/>
         </div>
         <div class="profile-info">
           <h1 class="name">Vir</h1>
-            <a class="project-btn" href="projects_page/projects.html">
-             <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/home.svg" class="project-icon" alt="Home icon" style="filter: invert(80%) sepia(20%) saturate(500%) hue-rotate(240deg);">
-                  Projects
-                     </a>
-
-
-           <hr class="divider"/>
-
+          <p class="ayanokoji-quote" id="ayanokoji-quote"></p>
+          <a class="project-btn" href="projects_page/projects.html">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/home.svg" class="project-icon" alt="Home icon">
+            Projects
+          </a>
+          <hr class="divider"/>
           <h2 class="section-title">PRESENTATION</h2>
           <div class="badges">
-            <span class="badge">🧒 14-Years-Old</span>
+            <span class="badge" id="age-badge">🧒 14-Years-Old</span>
             <span class="badge">🎂 Oct 13</span>
             <span class="badge">♂️ He/Him</span>
             <span class="badge">😒 ISTP-T</span>
@@ -62,7 +52,6 @@
 
       <hr class="divider"/>
 
-      <!-- Interests -->
       <section class="section">
         <h2 class="section-title">INTERESTS</h2>
         <div class="pills">
@@ -75,39 +64,34 @@
 
       <hr class="divider"/>
 
-      <!-- Links -->
       <section class="section">
         <h2 class="section-title">LINKS</h2>
         <div class="social-grid">
-          <a href="https://discord.com/users/823914932185202728"  target="_blank"   class="social-btn"><img src="https://cdn.simpleicons.org/discord"  class="social-icon" alt="Discord"/> <span>Discord</span></a>
-          <a href="https://github.com/Virenvooo/"            target="_blank"        class="social-btn"><img src="https://cdn.simpleicons.org/github"   class="social-icon" alt="GitHub"/>  <span>GitHub</span></a>
-          <a href="https://open.spotify.com/user/mrfpf7omss9rmtuuebmymartk" target="_blank" class="social-btn"><img src="https://cdn.simpleicons.org/spotify"  class="social-icon" alt="Spotify"/> <span>Spotify</span></a>
-          <a href="https://www.last.fm/it/user/Virenvo"       target="_blank"       class="social-btn"><img src="https://cdn.simpleicons.org/lastdotfm" class="social-icon" alt="Last.fm"/> <span>Last.fm</span></a>
-          <a href="https://anilist.co/user/Vir/"             target="_blank"        class="social-btn"><img src="https://cdn.simpleicons.org/anilist"  class="social-icon" alt="AniList"/> <span>AniList</span></a>
-          <a href="https://steamcommunity.com/id/Virenvo/"   target="_blank"        class="social-btn"><img src="https://cdn.simpleicons.org/steam"    class="social-icon" alt="Steam"/>   <span>Steam</span></a>
+          <a href="https://discord.com/users/823914932185202728" target="_blank" class="social-btn" data-tooltip="Message me on Discord"><img src="https://cdn.simpleicons.org/discord" class="social-icon" alt="Discord"/> <span>Discord</span></a>
+          <a href="https://github.com/Virenvooo/" target="_blank" class="social-btn" data-tooltip="Check out my projects"><img src="https://cdn.simpleicons.org/github" class="social-icon" alt="GitHub"/> <span>GitHub</span></a>
+          <a href="https://open.spotify.com/user/mrfpf7omss9rmtuuebmymartk" target="_blank" class="social-btn" data-tooltip="See what I'm listening to"><img src="https://cdn.simpleicons.org/spotify" class="social-icon" alt="Spotify"/> <span>Spotify</span></a>
+          <a href="https://www.last.fm/it/user/Virenvo" target="_blank" class="social-btn" data-tooltip="My full music history"><img src="https://cdn.simpleicons.org/lastdotfm" class="social-icon" alt="Last.fm"/> <span>Last.fm</span></a>
+          <a href="https://anilist.co/user/Vir/" target="_blank" class="social-btn" data-tooltip="Anime I've watched"><img src="https://cdn.simpleicons.org/anilist" class="social-icon" alt="AniList"/> <span>AniList</span></a>
+          <a href="https://steamcommunity.com/id/Virenvo/" target="_blank" class="social-btn" data-tooltip="My games on Steam"><img src="https://cdn.simpleicons.org/steam" class="social-icon" alt="Steam"/> <span>Steam</span></a>
         </div>
       </section>
 
       <hr class="divider"/>
 
-      <!-- Discord status -->
       <section class="section">
         <h2 class="section-title">DISCORD STATUS</h2>
         <div class="discord-widget">
-          <img src="https://discord.c99.nl/widget/theme-3/823914932185202728.png"
-               alt="Discord Status" class="discord-banner-widget" loading="lazy"/>
+          <img src="https://discord.c99.nl/widget/theme-3/823914932185202728.png" alt="Discord Status" class="discord-banner-widget" loading="lazy"/>
         </div>
       </section>
 
       <hr class="divider"/>
 
-      <!-- Spotify now playing -->
       <section class="section">
         <h2 class="section-title">CURRENTLY PLAYING ON SPOTIFY</h2>
         <div class="spotify-widget">
           <a href="https://open.spotify.com/user/mrfpf7omss9rmtuuebmymartk" target="_blank">
-            <img src="https://spotify-github-profile.kittinanx.com/api/view?uid=mrfpf7omss9rmtuuebmymartk&cover_image=true&theme=spotify-embed&show_offline=true&background_color=121212&interchange=false&profanity=false&mode=dark&bar_color=53b14f&bar_color_cover=false"
-                 alt="Spotify Currently Playing" loading="lazy"/>
+            <img src="https://spotify-github-profile.kittinanx.com/api/view?uid=mrfpf7omss9rmtuuebmymartk&cover_image=true&theme=spotify-embed&show_offline=true&background_color=120000&interchange=false&profanity=false&mode=dark&bar_color=8B0000&bar_color_cover=false" alt="Spotify Currently Playing" loading="lazy"/>
           </a>
         </div>
       </section>
@@ -115,57 +99,135 @@
       <hr class="divider"/>
 
       <footer class="footer">
-  <a href="https://example.com" target="_blank" style="color: inherit; text-decoration: none;">
-    Last change made: 16th Feb 2026 ✨
-  </a>
-</footer>
-
+        <a href="https://example.com" target="_blank" style="color: inherit; text-decoration: none;">
+          Last change made: 21st Mar 2026 ✨
+        </a>
+      </footer>
 
     </div>
   </main>
 
-  <!-- ───────────────────────────────────────────────
-       SCRIPTS
-  ─────────────────────────────────────────────── -->
   <script>
-    // ─── Particles ───────────────────────────────────────
+    // ─── Particles (ridotte per performance) ─────────────
     particlesJS("particles-js", {
-  particles: {
-    number: { value: 40 }, // più particelle
-    color: { value: ["#bb86fc", "#9d4edd", "#da3c72"] },
-    opacity: { value: 0.7, random: true },
-    size: { value: 2.8, random: true }, // più visibili
-    line_linked: { enable: false },
-    move: {
-      enable: true,
-      speed: 2.2,        // molto più veloce
-      direction: "none",
-      random: true,
-      straight: false,
-      out_mode: "out"
-    }
-  },
-  interactivity: {
-    events: { onhover: { enable: false }, onclick: { enable: false } }
-  },
-  retina_detect: true
-});
+      particles: {
+        number: { value: 25 },
+        color: { value: ["#8B0000", "#C0392B", "#E05555"] },
+        opacity: { value: 0.6, random: true },
+        size: { value: 2.2, random: true },
+        line_linked: { enable: false },
+        move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out" }
+      },
+      interactivity: { events: { onhover: { enable: false }, onclick: { enable: false } } },
+      retina_detect: false
+    });
 
-    // ─── Click particles (very lightweight version) ───────
+    // ─── Falling playing cards ────────────────────────────
+    const cardsCanvas = document.getElementById('cards-canvas');
+    const cardsCtx = cardsCanvas.getContext('2d');
+
+    function resizeCardsCanvas() {
+      cardsCanvas.width = window.innerWidth;
+      cardsCanvas.height = window.innerHeight;
+    }
+    resizeCardsCanvas();
+    window.addEventListener('resize', resizeCardsCanvas);
+
+    const SUITS = ['♠', '♥', '♦', '♣'];
+    const COLORS = ['#E05555', '#8B0000', '#C0392B', '#ff6b6b'];
+
+    function createCard() {
+      return {
+        x: Math.random() * window.innerWidth,
+        y: -80,
+        width: 32,
+        height: 44,
+        suit: SUITS[Math.floor(Math.random() * SUITS.length)],
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        speed: 0.5 + Math.random() * 1.0,
+        rotation: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.012,
+        drift: (Math.random() - 0.5) * 0.3,
+        opacity: 0.5 + Math.random() * 0.5
+      };
+    }
+
+    // Only 18 cards max – very light
+    let fallingCards = Array.from({ length: 18 }, createCard).map(c => {
+      c.y = Math.random() * window.innerHeight;
+      return c;
+    });
+
+    function drawCard(c) {
+      cardsCtx.save();
+      cardsCtx.globalAlpha = c.opacity;
+      cardsCtx.translate(c.x, c.y);
+      cardsCtx.rotate(c.rotation);
+
+      // Card body
+      const r = 4;
+      cardsCtx.beginPath();
+      cardsCtx.moveTo(-c.width/2 + r, -c.height/2);
+      cardsCtx.lineTo(c.width/2 - r, -c.height/2);
+      cardsCtx.arcTo(c.width/2, -c.height/2, c.width/2, -c.height/2 + r, r);
+      cardsCtx.lineTo(c.width/2, c.height/2 - r);
+      cardsCtx.arcTo(c.width/2, c.height/2, c.width/2 - r, c.height/2, r);
+      cardsCtx.lineTo(-c.width/2 + r, c.height/2);
+      cardsCtx.arcTo(-c.width/2, c.height/2, -c.width/2, c.height/2 - r, r);
+      cardsCtx.lineTo(-c.width/2, -c.height/2 + r);
+      cardsCtx.arcTo(-c.width/2, -c.height/2, -c.width/2 + r, -c.height/2, r);
+      cardsCtx.closePath();
+
+      cardsCtx.fillStyle = 'rgba(20, 5, 5, 0.85)';
+      cardsCtx.fill();
+      cardsCtx.strokeStyle = c.color;
+      cardsCtx.lineWidth = 1;
+      cardsCtx.stroke();
+
+      // Suit symbol
+      cardsCtx.fillStyle = c.color;
+      cardsCtx.font = 'bold 16px serif';
+      cardsCtx.textAlign = 'center';
+      cardsCtx.textBaseline = 'middle';
+      cardsCtx.fillText(c.suit, 0, 0);
+
+      cardsCtx.restore();
+    }
+
+    let lastTime = 0;
+    function animateCards(ts) {
+      // Throttle to ~30fps for performance
+      if (ts - lastTime < 33) { requestAnimationFrame(animateCards); return; }
+      lastTime = ts;
+
+      cardsCtx.clearRect(0, 0, cardsCanvas.width, cardsCanvas.height);
+      fallingCards.forEach(c => {
+        c.y += c.speed;
+        c.x += c.drift;
+        c.rotation += c.rotSpeed;
+        if (c.y > cardsCanvas.height + 80) {
+          c.y = -80;
+          c.x = Math.random() * cardsCanvas.width;
+        }
+        drawCard(c);
+      });
+      requestAnimationFrame(animateCards);
+    }
+    requestAnimationFrame(animateCards);
+
+    // ─── Click particles ──────────────────────────────────
     const clickCanvas = document.getElementById('click-effect');
     const clickCtx = clickCanvas.getContext('2d');
     clickCanvas.width = window.innerWidth;
     clickCanvas.height = window.innerHeight;
-
     let clickParticles = [];
 
     document.addEventListener('click', e => {
       for (let i = 0; i < 6; i++) {
         clickParticles.push({
-          x: e.clientX,
-          y: e.clientY,
+          x: e.clientX, y: e.clientY,
           radius: Math.random() * 3 + 1,
-          color: `hsl(${Math.random() < 0.6 ? 270 : 330}, 85%, 70%)`,
+          color: `hsl(${Math.random() < 0.6 ? 0 : 350}, 85%, 50%)`,
           vx: Math.random() * 5 - 2.5,
           vy: Math.random() * 5 - 2.5,
           life: 20
@@ -183,9 +245,7 @@
       clickParticles = clickParticles.filter(p => {
         p.life--;
         if (p.life <= 0) return false;
-        p.x += p.vx;
-        p.y += p.vy;
-        p.radius *= 0.96;
+        p.x += p.vx; p.y += p.vy; p.radius *= 0.96;
         clickCtx.beginPath();
         clickCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         clickCtx.fillStyle = p.color;
@@ -197,51 +257,59 @@
     }
     animateClick();
 
-    // ─── Scroll reveal ────────────────────────────────────
-    const reveals = document.querySelectorAll('.reveal');
-    function checkReveal() {
-      const trigger = window.innerHeight * 0.88;
-      reveals.forEach(el => {
-        if (el.getBoundingClientRect().top < trigger) {
-          el.classList.add('visible');
-        }
-      });
-    }
-    window.addEventListener('scroll', checkReveal);
-    window.addEventListener('load', checkReveal);
-
-    const frames = ["@", "@v", "@vi", "@vir", "@vi", "@v", "@"];
-
-    let i = 0;
-    setInterval(() => {
-        document.title = frames[i];
-        i = (i + 1) % frames.length;
-    }, 500); // speed (ms)
-
-  const spotlight = document.getElementById("mouse-spotlight");
-    let mouseX = 0, mouseY = 0;
-    let orbX = 0, orbY = 0;
-
-    document.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-
+    // ─── Mouse spotlight ──────────────────────────────────
+    const spotlight = document.getElementById("mouse-spotlight");
+    let mouseX = 0, mouseY = 0, orbX = 0, orbY = 0;
+    document.addEventListener("mousemove", e => { mouseX = e.clientX; mouseY = e.clientY; });
     function animateSpotlight() {
-      // smoothing (lerp)
       orbX += (mouseX - orbX) * 0.30;
       orbY += (mouseY - orbY) * 0.30;
-
       spotlight.style.transform = `translate(${orbX - 130}px, ${orbY - 130}px)`;
-
       requestAnimationFrame(animateSpotlight);
     }
-
     animateSpotlight();
 
+    // ─── Custom cursor ────────────────────────────────────
+    const cursor = document.getElementById('custom-cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top  = e.clientY + 'px';
+    });
+    document.addEventListener('mousedown', () => cursor.style.transform = 'translate(-50%, -50%) scale(0.75)');
+    document.addEventListener('mouseup',   () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
+
+    // ─── Auto age ─────────────────────────────────────────
+    const birthday = new Date(2011, 9, 13); // Oct 13 2011 (month is 0-indexed)
+    const today = new Date();
+    let age = today.getFullYear() - birthday.getFullYear();
+    const notYet = today < new Date(today.getFullYear(), birthday.getMonth(), birthday.getDate());
+    if (notYet) age--;
+    document.getElementById('age-badge').textContent = `🧒 ${age}-Years-Old`;
+
+    // ─── Ayanokoji random quote ───────────────────────────
+    const quotes = [
+      "I have no interest in working any harder than absolutely necessary.",
+      "The weak will always be the weak. There's no changing that.",
+      "People are tools. Nothing more, nothing less.",
+      "I don't need to show off. Results speak for themselves.",
+      "Emotions are a weakness that clouds judgment.",
+      "If you don't like the rules, you need to become someone who can change them.",
+      "I have no intention of losing to anyone.",
+      "What's the point of trying when the outcome is already decided?",
+      "In this world, the only thing that matters is results.",
+      "I prefer to stay in the shadows. It's easier to observe from there.",
+      "Helping others without expecting anything in return is just naive.",
+      "True strength is knowing when not to act.",
+    ];
+    const q = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById('ayanokoji-quote').textContent = `"${q}"`;
+
+    // ─── Title animation ──────────────────────────────────
+    const frames = ["@", "@v", "@vi", "@vir", "@vi", "@v", "@"];
+    let i = 0;
+    setInterval(() => { document.title = frames[i]; i = (i + 1) % frames.length; }, 500);
   </script>
 
-  <!-- Optional fun addition – keep or remove -->
   <script src="./oneko.js"></script>
 
 </body>
